@@ -65,6 +65,16 @@ bool is_interactive() {
     }
 
 
+// tty::cursor_up_multiple_lines(std::size_t line_count)
+cursor_up_multiple_lines::cursor_up_multiple_lines(std::size_t line_count) : line_count(line_count) {}
+
+LIBDNF_CLI_API std::ostream & operator<<(std::ostream & os, const cursor_up_multiple_lines & cursor) {
+    if (is_interactive()) {
+        os << "\033[" << cursor.line_count << "A";
+    }
+    return os;
+}
+
 // tty::reset
 TTY_COMMAND(reset, "\033[0m")
 

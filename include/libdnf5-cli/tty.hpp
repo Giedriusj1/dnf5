@@ -47,6 +47,15 @@ LIBDNF_CLI_API std::ostream & white(std::ostream & stream);
 LIBDNF_CLI_API std::ostream & clear_line(std::ostream & stream);
 LIBDNF_CLI_API std::ostream & cursor_up(std::ostream & stream);
 
+class cursor_up_multiple_lines {
+public:
+    explicit cursor_up_multiple_lines(std::size_t);
+    LIBDNF_CLI_API friend std::ostream & operator<<(std::ostream & os, const cursor_up_multiple_lines & cursorUp);
+
+private:
+    std::size_t line_count;
+};
+
 LIBDNF_CLI_API std::ostream & cursor_hide(std::ostream & stream);
 LIBDNF_CLI_API std::ostream & cursor_show(std::ostream & stream);
 
